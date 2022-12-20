@@ -8,8 +8,12 @@ templates:
   bin/pre-start.erb: bin/pre-start
   bin/prometheus_ctl: bin/prometheus_ctl
   config/prometheus.yml: config/prometheus.yml
+  config/prometheus.web.yml: config/prometheus.web.yml
   config/custom.rules.yml: config/custom.rules.yml
   config/remote_write_ca.crt: config/remote_write_ca.crt
+  config/web_tls_server.crt: config/web_tls_server.crt
+  config/web_tls_server.key: config/web_tls_server.key
+  config/web_tls_server_client_ca.crt: config/web_tls_server_client_ca.crt
 
 provides:
   - name: prometheus
@@ -137,6 +141,28 @@ properties:
     description: "Prefix for the internal routes of web endpoints"
   prometheus.web.user_assets:
     description: "Path to static asset directory, available at /user"
+  prometheus.web.tls_server_config.cert_contents:
+    description: "TLS server certificate for the web interface, API, and telemetry"
+  prometheus.web.tls_server_config.key_contents:
+    description: "TLS server key for the web interface, API, and telemetry"
+  prometheus.web.tls_server_config.client_ca_contents:
+    description: "TLS server CA certificate for client certificate authentication"
+  prometheus.web.tls_server_config.client_auth_type:
+    description: "TLS server policy for client authentication"
+  prometheus.web.tls_server_config.min_version:
+    description: "Minimum TLS version that is acceptable"
+  prometheus.web.tls_server_config.max_version:
+    description: "Maximum TLS version that is acceptable"
+  prometheus.web.tls_server_config.cipher_suites:
+    description: "List of supported cipher suites for TLS versions up to TLS 1.2"
+  prometheus.web.tls_server_config.prefer_server_cipher_suites:
+    description: "Whether the server selects the client's most preferred ciphersuite, or the server's most preferred ciphersuite"
+  prometheus.web.tls_server_config.curve_preferences:
+    description: "List of elliptic curves that will be used in an ECDHE handshake"
+  prometheus.web.http_server_config.http2:
+    description: "Enable HTTP/2 support for the web interface, API, and telemetry"
+  prometheus.web.http_server_config.headers:
+    description: "Map of headers that can be added to HTTP responses"
 
   env.http_proxy:
     description: "HTTP proxy to use"

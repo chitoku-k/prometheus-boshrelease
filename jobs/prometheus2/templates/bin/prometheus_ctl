@@ -105,6 +105,7 @@ case $1 in
       <% if_p('prometheus.storage.remote.read_max_bytes_in_frame') do |read_max_bytes_in_frame| %> \
       --storage.remote.read-max-bytes-in-frame="<%= read_max_bytes_in_frame %>" \
       <% end %> \
+      --web.config.file=/var/vcap/jobs/prometheus2/config/prometheus.web.yml \
       <% if_p('prometheus.web.console.libraries') do |libraries| %> \
       --web.console.libraries="<%= libraries %>" \
       <% end %> \
